@@ -116,6 +116,7 @@
     <div id="waveform-container">
       <div id="zoomview-container"></div>
       <div id="overview-container"></div>
+      <div id="more-container"></div>
     </div>
 
     <div id="demo-controls">
@@ -343,6 +344,8 @@
 
         Peaks.init(options, function(err, peaksInstance) {
           console.log("Peaks instance ready");
+
+          peaksInstance.addView(document.getElementById('more-container'));
 
           document.querySelector('[data-action="zoom-in"]').addEventListener('click', function() {
             peaksInstance.zoom.zoomIn();

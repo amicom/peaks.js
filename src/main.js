@@ -388,6 +388,34 @@ define([
     return instance;
   };
 
+  Peaks.prototype.addView = function(zoomviewContainer) {
+    var instance = new Peaks();
+
+    instance.options = this.options;
+
+    if (!Utils.isHTMLElement(zoomviewContainer)) {
+      throw new TypeError('Peaks.init(): The supplied container must be valid HTML elements');
+    }
+
+    if (instance.options.keyboard) {
+      instance._keyboardHandler = new KeyboardHandler(instance);
+    }
+
+    instance.player = new Player(instance, instance.options.mediaElement);
+    instance.segments = this.segments;
+    instance.points = this.points;
+    instance.zoom = new ZoomController(instance, instance.options.zoomLevels);
+    instance.time = new TimeController(instance);
+    instance.views = new ViewController(instance);
+
+    instance._waveformData = this._waveformData;
+    instance.views.createZoomview(zoomviewContainer)
+    .enableAutoScroll(false);
+    instance._addWindowResizeHandler();
+
+    return instance;
+  };
+
   Peaks.prototype._setOptions = function(opts) {
     // eslint-disable-next-line no-console
     opts.deprecationLogger = opts.deprecationLogger || console.log.bind(console);
