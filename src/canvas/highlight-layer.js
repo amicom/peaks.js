@@ -7,7 +7,7 @@
  */
 
 define([
-  './utils',
+  './../utils',
   'konva'
 ], function(
   Utils,

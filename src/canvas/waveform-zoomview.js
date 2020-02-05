@@ -15,7 +15,7 @@ define([
   './waveform-shape',
   // './animated-zoom-adapter',
   // './static-zoom-adapter',
-  './utils',
+  './../utils',
   'konva'
   ], function(
     MouseDragHandler,

@@ -7,12 +7,14 @@
  */
 
 define([
-  './waveform-overview',
-  './waveform-zoomview',
+  './canvas/waveform-overview',
+  './canvas/waveform-zoomview',
+  './svg/svg-waveform-zoomview.js',
   './utils'
   ], function(
     WaveformOverview,
     WaveformZoomView,
+    SvgWaveformZoomView,
     Utils) {
   'use strict';
 
@@ -61,11 +63,20 @@ define([
 
     var waveformData = this._peaks.getWaveformData();
 
+    if (this._peaks.options.useSVG) {
+      this._zoomview = new SvgWaveformZoomView(
+        waveformData,
+        container,
+        this._peaks
+      );
+    }
+    else {
     this._zoomview = new WaveformZoomView(
       waveformData,
       container,
       this._peaks
     );
+    }
 
     return this._zoomview;
   };

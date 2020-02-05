@@ -14,7 +14,7 @@ define([
   './segments-layer',
   './waveform-axis',
   './waveform-shape',
-  './utils',
+  './../utils',
   'konva'
 ], function(
   HighlightLayer,
