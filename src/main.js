@@ -59,6 +59,11 @@ define([
     this.options = {
 
       /**
+       * Choose to render Peaks.js as a canvas (default) or as SVG
+       */
+      useSVG: false,
+
+      /**
        * Array of scale factors (samples per pixel) for the zoom levels
        * (big >> small)
        */
@@ -439,6 +444,10 @@ define([
     // The 'containers' option overrides 'template'.
     if (opts.containers) {
       opts.template = null;
+    }
+
+    if (opts.useSVG && !(typeof opts.useSVG === 'boolean')) {
+      throw new TypeError('Peaks.init(): The useSVG option must be of type boolean');
     }
 
     if (opts.logger && !Utils.isFunction(opts.logger)) {
