@@ -381,9 +381,13 @@ define([
   };
 
   WaveformZoomView.prototype._resampleData = function(options) {
+    console.log('options',options);
     this._data = this._originalWaveformData.resample(options);
+    console.log('data',this._data);
     this._scale = this._data.scale;
+    console.log('scale',this._scale);
     this._pixelLength = this._data.length;
+    console.log('pixel length',this._pixelLength);
   };
 
   WaveformZoomView.prototype.getStartTime = function() {
